@@ -4,230 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rutika Gaonkar – Data Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --bg: #f8f9fa;
+      --text: #111827;
+      --accent: #7c3aed;
+      --subtle: #6b7280;
+      --hover: #6366f1;
+    }
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       font-family: 'Inter', sans-serif;
-      background-color: #0a0a0a;
-      color: #e0e0e0;
+      background-color: var(--bg);
+      color: var(--text);
     }
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background-color: #0d0d0d;
+      padding: 24px 60px;
+      background-color: transparent;
     }
-    nav img.logo {
-      height: 40px;
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.5px;
     }
-    nav ul {
-      list-style: none;
+    .nav-links {
       display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
+      gap: 24px;
     }
-    nav ul li a {
-      color: #00bfff;
+    .nav-links a {
       text-decoration: none;
+      color: var(--text);
       font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--hover);
     }
     header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
       text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      padding: 20px;
     }
     header h1 {
       font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    header h2 {
-      font-size: 2rem;
-      color: #00bfff;
-      margin-bottom: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent);
     }
     header p {
-      font-size: 1.1rem;
-      color: #aaaaaa;
-      margin-bottom: 30px;
-    }
-    .button {
-      padding: 12px 28px;
-      border: 2px solid #00bfff;
-      border-radius: 30px;
-      background: transparent;
-      color: #00bfff;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    .button:hover {
-      background-color: #00bfff;
-      color: #0a0a0a;
-    }
-    .section {
-      padding: 60px 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section h2 {
-      color: #00bfff;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-    .skills-category h3 {
-      color: #ffffff;
-      margin: 20px 0 10px;
-    }
-    ul.skills {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-    }
-    ul.skills li {
-      background-color: #111;
-      padding: 12px;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: 500;
-    }
-    .certs a {
-      color: #00bfff;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .project-card {
-      background-color: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #2a2a2a;
-    }
-    .project-card h4 {
-      margin: 0 0 10px;
-      color: #00bfff;
-    }
-    .project-card p {
-      color: #ccc;
-      font-size: 0.95rem;
+      font-size: 1.25rem;
+      color: var(--subtle);
+      max-width: 600px;
     }
     footer {
       text-align: center;
-      padding: 40px;
-      background-color: #0d0d0d;
-      color: #777;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: var(--subtle);
     }
   </style>
 </head>
 <body>
+
   <nav>
-    <img src="logo.png" alt="Rutika Logo" class="logo">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="logo">Rutika</div>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="certs.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
 
   <header>
-    <h1>Hello, I am Rutika</h1>
-    <h2>Data Analyst</h2>
-    <p>Making data speak — with clarity and impact.</p>
-    <a href="#contact" class="button">Let's get in touch</a>
+    <h1>Making Data Speak</h1>
+    <p>Hi, I’m Rutika — a data analyst turning raw data into powerful insights through visuals, structure, and logic.</p>
   </header>
 
-  <section class="section" id="about">
-    <h2>Hello, I’m Rutika </h2>
-    <h3>Data Analyst</h3>
-    <p>
-    I’m driven by curiosity and a deep love for turning raw numbers into meaningful narratives. 
-    With a background in data science and digital analytics, I specialise in translating complex datasets into clear, actionable insights that solve real business problems.
-  </p>
-  <p>
-    My toolkit includes Python, SQL, Power BI, and Excel, and I'm particularly passionate about visual storytelling with tools like Pandas, Seaborn, and Matplotlib. 
-    Whether it’s cleaning messy data, automating reports, or building dashboards that guide decisions, I find joy in every step of the data journey.
-  </p>
-  <p>
-    Beyond the spreadsheets and code, I believe in empathy-driven analysis — asking the “why” behind the “what,” and always keeping the end-user in mind. 
-    I’m currently pursuing my master’s in Data Science and building hands-on projects that showcase my analytical thinking, business acumen, and technical skills.
-  </p>
-  <p>
-    If you're looking for someone who can not just analyse data, but make it speak — with clarity, creativity, and purpose — I’d love to connect.
-  </p>
-  </section>
-
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <div class="skills-category">
-      <h3>💻 Languages & Tools</h3>
-      <ul class="skills">
-        <li>Python</li>
-        <li>SQL</li>
-        <li>Excel</li>
-      </ul>
-    </div>
-    <div class="skills-category">
-      <h3>📦 Libraries & Frameworks</h3>
-      <ul class="skills">
-        <li>Pandas</li>
-        <li>Matplotlib</li>
-        <li>Seaborn</li>
-      </ul>
-    </div>
-    <div class="skills-category">
-      <h3>📊 Data Visualization</h3>
-      <ul class="skills">
-        <li>Power BI</li>
-        <li>Matplotlib</li>
-        <li>Seaborn</li>
-      </ul>
-    </div>
-    <div class="skills-category">
-      <h3>🌐 Platforms & Version Control</h3>
-      <ul class="skills">
-        <li>GitHub</li>
-        <li>Jupyter Notebook</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" id="certifications">
-    <h2>Certifications</h2>
-    <div class="certs">
-      <a href="https://www.linkedin.com/learning/certificates/1561036f52dc4db9b6d45795b19c4030067eeebc2ba6d0240d79c46115c9a6c9" target="_blank">SQL for Data Analysis – LinkedIn Learning</a>
-      <a href="https://www.linkedin.com/learning/certificates/06d6fcd50e303d2c6449ec13baf147088bbe1624219f9721db44157147e56124" target="_blank">Business Analysis Foundations – LinkedIn Learning</a>
-    </div>
-  </section>
-
-  <section class="section" id="projects">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>Coming Soon</h4>
-        <p>Projects will be featured here soon.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Email: rutika.gaonkar1426@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/rutikaGaonkar" target="_blank">github.com/rutikaGaonkar</a></p>
-  </section>
-
   <footer>
-    &copy; 2025 Rutika Gaonkar. All rights reserved.
+    &copy; 2025 Rutika Gaonkar. Designed with clarity and code.
   </footer>
+
 </body>
 </html>
