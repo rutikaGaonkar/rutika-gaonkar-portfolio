@@ -1,103 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rutika Gaonkar – Data Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f8f9fa;
-      --text: #111827;
-      --accent: #7c3aed;
-      --subtle: #6b7280;
-      --hover: #6366f1;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 60px;
-      background-color: transparent;
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.5px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover {
-      color: var(--hover);
-    }
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 90vh;
-      text-align: center;
-      padding: 20px;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-    header p {
-      font-size: 1.25rem;
-      color: var(--subtle);
-      max-width: 600px;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.9rem;
-      color: var(--subtle);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutika Gaonkar - Data Science Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #a3a3a3 0%, #8b7355 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* Page flip animations */
+        .page-section {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center center;
+            opacity: 0;
+            transform: perspective(1000px) rotateX(-15deg) translateY(50px);
+        }
+        
+        .page-section.animate {
+            opacity: 1;
+            transform: perspective(1000px) rotateX(0deg) translateY(0px);
+        }
+        
+        .page-section.flip-in {
+            animation: pageFlipIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes pageFlipIn {
+            0% {
+                opacity: 0;
+                transform: perspective(1000px) rotateX(-90deg) translateY(100px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: perspective(1000px) rotateX(-45deg) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1000px) rotateX(0deg) translateY(0px);
+            }
+        }
+        
+        /* Content animations within pages */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scale-in.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .stagger-delay-1 { transition-delay: 0.2s; }
+        .stagger-delay-2 { transition-delay: 0.4s; }
+        .stagger-delay-3 { transition-delay: 0.6s; }
+        .stagger-delay-4 { transition-delay: 0.8s; }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Page shadow effects */
+        .page-shadow {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 20px 20px;
+        }
+        
+        /* Parallax effect for hero */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Page transition overlay */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a3a3a3 0%, #8b7355 100%);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition.active {
+            opacity: 0.1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-semibold text-gray-800">Rutika Gaonkar</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-gray-800 transition-colors">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-gray-800 transition-colors">Projects</a>
+                    <a href="#skills" class="text-gray-600 hover:text-gray-800 transition-colors">Skills</a>
+                    <a href="#contact" class="text-gray-600 hover:text-gray-800 transition-colors">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <a href="#about" class="block py-2 text-gray-600 hover:text-gray-800">About</a>
+                <a href="#projects" class="block py-2 text-gray-600 hover:text-gray-800">Projects</a>
+                <a href="#skills" class="block py-2 text-gray-600 hover:text-gray-800">Skills</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-  <nav>
-    <div class="logo">Rutika</div>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="skills.html">Skills</a>
-      <a href="projects.html">Projects</a>
-      <a href="certs.html">Certifications</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-24 pb-20">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="mb-8">
+                <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <span class="text-4xl">👩‍💻</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Rutika Gaonkar</h1>
+                <p class="text-xl md:text-2xl font-light mb-8">Data Science @ UOG</p>
+                <p class="text-lg max-w-2xl mx-auto mb-8 opacity-90">
+                    Passionate about turning data into insights and building intelligent solutions that make a difference.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="bg-white text-stone-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-stone-700 transition-colors">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <header>
-    <h1>Making Data Speak</h1>
-    <p>Hi, I’m Rutika — a data analyst turning raw data into powerful insights through visuals, structure, and logic.</p>
-  </header>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition"></div>
 
-  <footer>
-    &copy; 2025 Rutika Gaonkar. Designed with clarity and code.
-  </footer>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white page-section page-shadow">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-stone-500 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-left">
+                    <h3 class="text-2xl font-semibold mb-6">Hello! I'm a Data Science Student</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Hi, I'm Rutika Gaonkar, a data science graduate student at the University of Greenwich. I transitioned into data from a marketing background, drawn by its ability to turn complexity into clarity and uncover meaning in what first seems like noise.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        What I love most about data is its balance of logic and creativity; there's structure, but also space to explore. Whether it's finding patterns, asking better questions, or building something useful from raw information, I find the process both grounding and exciting.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Now, I'm learning to shape data into stories, tools, and decisions using Python, pandas, SQL and Tableau, and I'm currently exploring machine learning and data storytelling as part of my academic journey.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        I'm excited by the potential of data to improve everyday decisions, and I'm here to keep learning, building, and solving meaningful problems.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-stone-100 text-stone-800 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+                        <span class="bg-stone-100 text-stone-800 px-3 py-1 rounded-full text-sm">Data Analysis</span>
+                        <span class="bg-stone-100 text-stone-800 px-3 py-1 rounded-full text-sm">Statistics</span>
+                        <span class="bg-stone-100 text-stone-800 px-3 py-1 rounded-full text-sm">Data Visualization</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-2xl p-8 fade-in-right">
+                    <h4 class="text-xl font-semibold mb-6">Education & Experience</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="font-medium text-gray-800">Master's in Data Science</h5>
+                            <p class="text-gray-600 text-sm">University of Greenwich • Sep 2025-Sep 2026</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-gray-800">Data Analytics Intern</h5>
+                            <p class="text-gray-600 text-sm">Company Name • Summer 2024</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-gray-800">Research Assistant</h5>
+                            <p class="text-gray-600 text-sm">University Lab • 2023-Present</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</body>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 page-section page-shadow">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-stone-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Here are some of my recent data science projects that showcase my skills in analysis, modeling, and visualization.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-sm card-hover p-6 scale-in stagger-delay-1">
+                    <div class="bg-stone-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Customer Churn Prediction</h3>
+                    <p class="text-gray-600 mb-4">
+                        Built a machine learning model to predict customer churn using Python and scikit-learn, achieving 85% accuracy.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Python</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Pandas</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Scikit-learn</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="#" class="text-stone-700 hover:text-stone-900 font-medium text-sm">View Project</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 font-medium text-sm">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-sm card-hover p-6 scale-in stagger-delay-2">
+                    <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">📈</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sales Dashboard</h3>
+                    <p class="text-gray-600 mb-4">
+                        Created an interactive dashboard using Tableau to visualize sales trends and KPIs for business stakeholders.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Tableau</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">SQL</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Excel</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="#" class="text-stone-700 hover:text-stone-900 font-medium text-sm">View Project</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 font-medium text-sm">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-sm card-hover p-6 scale-in stagger-delay-3">
+                    <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">🤖</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sentiment Analysis</h3>
+                    <p class="text-gray-600 mb-4">
+                        Developed a natural language processing model to analyze sentiment in social media posts using deep learning.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Python</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">TensorFlow</span>
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">NLTK</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="#" class="text-stone-700 hover:text-stone-900 font-medium text-sm">View Project</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 font-medium text-sm">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white page-section page-shadow">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
+                <div class="w-20 h-1 bg-stone-500 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in-up stagger-delay-1">
+                    <div class="bg-stone-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🐍</span>
+                    </div>
+                    <h3 class="font-semibold mb-2">Programming</h3>
+                    <p class="text-gray-600 text-sm">Python, R, SQL, JavaScript</p>
+                </div>
+                <div class="text-center fade-in-up stagger-delay-2">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🧠</span>
+                    </div>
+                    <h3 class="font-semibold mb-2">Machine Learning</h3>
+                    <p class="text-gray-600 text-sm">Scikit-learn, TensorFlow, PyTorch</p>
+                </div>
+                <div class="text-center fade-in-up stagger-delay-3">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="font-semibold mb-2">Data Visualization</h3>
+                    <p class="text-gray-600 text-sm">Tableau, Matplotlib, Seaborn, D3.js</p>
+                </div>
+                <div class="text-center fade-in-up stagger-delay-4">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🗄️</span>
+                    </div>
+                    <h3 class="font-semibold mb-2">Data Management</h3>
+                    <p class="text-gray-600 text-sm">MySQL, PostgreSQL, MongoDB, Pandas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 page-section page-shadow">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-stone-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    I'm always interested in new opportunities and collaborations. Let's connect!
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in-left">
+                    <h3 class="text-xl font-semibold mb-6">Let's Connect</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-stone-100 w-10 h-10 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-lg">📧</span>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <p class="text-gray-600">rutika.gaonkar1426@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 w-10 h-10 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-lg">💼</span>
+                            </div>
+                            <div>
+                                <p class="font-medium">LinkedIn</p>
+                                <p class="text-gray-600">linkedin.com/in/rutika-gaonkar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gray-100 w-10 h-10 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-lg">🐙</span>
+                            </div>
+                            <div>
+                                <p class="font-medium">GitHub</p>
+                                <p class="text-gray-600">github.com/rutikaGaonkar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-sm fade-in-right">
+                    <h3 class="text-xl font-semibold mb-6">Send a Message</h3>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                        <p class="text-yellow-800 text-sm">
+                            <strong>Demo Form:</strong> This is a sample contact form. In a real portfolio, you'd connect this to a backend service.
+                        </p>
+                    </div>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-stone-600 text-white py-3 rounded-lg font-medium hover:bg-stone-700 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-gray-400">© 2025 Rutika Gaonkar. Built with passion for data science.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form - in a real portfolio, this would send your message.');
+        });
+
+        // Page flip animations
+        const pageObserverOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const pageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add page flip animation
+                    entry.target.classList.add('flip-in');
+                    
+                    // Trigger page transition overlay
+                    const overlay = document.querySelector('.page-transition');
+                    overlay.classList.add('active');
+                    setTimeout(() => {
+                        overlay.classList.remove('active');
+                    }, 300);
+                    
+                    // Animate content within the page after flip
+                    setTimeout(() => {
+                        const contentElements = entry.target.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+                        contentElements.forEach(el => el.classList.add('animate'));
+                    }, 600);
+                }
+            });
+        }, pageObserverOptions);
+
+        // Content animations
+        const contentObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const contentObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, contentObserverOptions);
+
+        // Initialize observers
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe page sections for flip animations
+            const pageSections = document.querySelectorAll('.page-section');
+            pageSections.forEach(section => pageObserver.observe(section));
+            
+            // Observe individual content elements
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+            animatedElements.forEach(el => contentObserver.observe(el));
+        });
+
+        // Enhanced smooth scrolling with page transitions
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Show transition overlay
+                    const overlay = document.querySelector('.page-transition');
+                    overlay.classList.add('active');
+                    
+                    // Scroll to target
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Hide overlay after scroll
+                        setTimeout(() => {
+                            overlay.classList.remove('active');
+                        }, 800);
+                    }, 150);
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm');
+                navbar.classList.remove('bg-white');
+            } else {
+                navbar.classList.add('bg-white');
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967cb49b81d9ef3c',t:'MTc1Mzk2MDgxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
