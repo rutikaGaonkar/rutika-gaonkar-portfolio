@@ -399,39 +399,134 @@
                     <h3 class="text-xl font-semibold mb-6">Send a Message</h3>
                     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
                         <p class="text-yellow-800 text-sm">
-                            <strong>Demo Form:</strong> This is a sample contact form. In a real portfolio, you'd connect this to a backend service.
+                            <strong>Demo Form:</strong> 
                         </p>
                     </div>
-                    <form class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="Your name">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="your@email.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stone-500 focus:border-transparent" placeholder="Your message..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-stone-600 text-white py-3 rounded-lg font-medium hover:bg-stone-700 transition-colors">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <form action="https://formspree.io/f/mgvyjjop" method="POST" id="contact-form" class="form-container">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Your Name" required>
+  </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-gray-400">© 2025 Rutika Gaonkar. Built with passion for data science.</p>
-        </div>
-    </footer>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Your Email" required>
+  </div>
 
-    <script>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+  </div>
+
+  <button type="submit" class="submit-btn">Send</button>
+  <p id="form-status" class="status-message"></p>
+</form>
+
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fffdf8; /* soft beige */
+    border: 1px solid #e6dfd3; 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    font-family: "Inter", sans-serif;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #6b4f3b; /* warm brown */
+    font-weight: 500;
+  }
+
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #d8cfc2;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1rem;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #b08968; /* medium beige-brown */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(176,137,104,0.15);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .submit-btn {
+    background: #6b4f3b; /* deep brown */
+    color: #fff;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    background: #8c6a51; /* lighter brown */
+  }
+
+  .status-message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .status-message.success {
+    color: #4caf50; /* green for success */
+  }
+
+  .status-message.error {
+    color: #d9534f; /* red for error */
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        status.textContent = "✅ Thanks! Your message has been sent.";
+        status.className = "status-message success";
+        form.reset();
+      } else {
+        status.textContent = "❌ Oops! Something went wrong.";
+        status.className = "status-message error";
+      }
+    } catch (error) {
+      status.textContent = "❌ Network error. Please try again.";
+      status.className = "status-message error";
+    }
+  });
+</script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
