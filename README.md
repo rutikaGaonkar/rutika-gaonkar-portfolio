@@ -1,5 +1,3 @@
-# rutika-gaonkar-portfolio
-
 # Hi, I'm Rutika 👋
 
 **Data Analyst — I turn messy data into decisions a business can act on.**
