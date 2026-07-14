@@ -16,8 +16,11 @@ I came to data the long way round: a degree in Business Management, then an MSc 
 ### 🔧 What I work with
 
 **Languages** SQL · Python · R
+
 **Analysis & viz** pandas · NumPy · scikit-learn · Matplotlib · Excel
+
 **Methods** NLP & text analytics · Time-series · ETL & data cleaning · Segmentation · KPI reporting
+
 **Tools** Jupyter · Git · Salesforce · Dynamics 365
 
 ---
