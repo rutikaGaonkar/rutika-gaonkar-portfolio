@@ -1,6 +1,6 @@
 # Hi, I'm Rutika 👋
 
-**Data Analyst — I turn messy data into decisions a business can act on.**
+**Data Analyst — I turn messy data into decisions businesses can act on.**
 
 I came to data the long way round: a degree in Business Management, then an MSc in Data Science (Distinction track) at the University of Greenwich. That mix is the point — I care less about models for their own sake and more about the decision at the end of the analysis.
 
