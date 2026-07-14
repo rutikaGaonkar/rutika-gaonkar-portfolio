@@ -24,10 +24,6 @@ I came to data the long way round: a degree in Business Management, then an MSc 
 
 ### 📊 Featured work
 
-**Customer Review Intelligence** · _in progress_
-Using NLP to turn thousands of real customer reviews into something a business can act on — what's driving negative sentiment, how it shifts over time, and what to fix first. Currently building this.
-`Python` `NLP` `sentiment analysis`
-
 **Social Media Sentiment & Share-Price Prediction** · _MSc Dissertation_
 An end-to-end pipeline testing whether Twitter/Reddit sentiment predicts share-price movement for major stocks — sentiment scoring, feature engineering, and time-series evaluation across market conditions.
 `Python` `TensorFlow` `NLP` `time-series`
